@@ -18,6 +18,8 @@ export const createVertexBuffer = (gl, data, bufferDesc, glType, glArrayType) =>
       count: data.length / bufferDesc.stride,
 
       draw(gl, mode) {
+         mode = mode ?? gl.TRIANGLES
+
          gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer)
          for (const { position, size, offset } of this.bufferDesc.attributes) {
             gl.enableVertexAttribArray(position)

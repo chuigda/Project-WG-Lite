@@ -3,9 +3,11 @@ import math from '../include/math.mjs'
 export default (math + String.raw`
 precision mediump float;
 
+// input
 attribute vec3 aVertexCoord;
 attribute vec3 aVertexNormal;
 
+// uniform
 const vec3 diffuse = vec3(1.0);
 const vec3 lightDir = vec3(0.0, 0.0, 1.0);
 
@@ -19,7 +21,8 @@ struct Material {
 
 uniform Material material;
 
-varying vec3 vertexColor; 
+// output
+varying lowp vec3 vertexColor; 
 
 void main() {
     vec3 fragPos = vec3(modelView * vec4(aVertexCoord, 1.0));
