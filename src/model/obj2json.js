@@ -5,6 +5,8 @@ const { readFileSync, writeFileSync } = require('fs')
 const fileName = process.argv[2]
 const outputFileName = process.argv[3]
 
+console.log(`converting ${fileName} to ${outputFileName}`)
+
 const objContent = readFileSync(fileName).toString('utf-8')
 const objLines = objContent.split('\n')
 

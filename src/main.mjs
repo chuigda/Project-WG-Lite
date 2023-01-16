@@ -1,13 +1,15 @@
 import { mat4 } from './3rd_parties/gl_matrix/index.mjs'
 import { createShaderProgram } from './glx/shader_program.mjs'
+import { createVertexBuffer } from './glx/vertex_buffer.mjs'
 
-import vsSource from './shader/phong/vertex.mjs'
-import fsSource from './shader/phong/fragment.mjs'
+import vsSource from './shader/gouraud/vertex.mjs'
+import fsSource from './shader/gouraud/fragment.mjs'
 import vertices from './model/monitor.mjs'
 
 const cx = {
    initialized: false,
-   rotation: 0
+   rotation: 0,
+   mesh: {}
 }
 
 export const initializeGL = gl => {
@@ -19,14 +21,22 @@ export const initializeGL = gl => {
    cx.shaderProgram = shaderProgram
 
    shaderProgram.useProgram(gl)
-   shaderProgram.enableVertexAttribArray(gl, 'aVertexCoord')
-   shaderProgram.enableVertexAttribArray(gl, 'aVertexNormal')
 
-   cx.vertexBufferObject = gl.createBuffer()
-   gl.bindBuffer(gl.ARRAY_BUFFER, cx.vertexBufferObject)
-   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW)
-   shaderProgram.vertexAttribPointer(gl, 'aVertexCoord', 3, gl.FLOAT, false, 6 * Float32Array.BYTES_PER_ELEMENT, 0)
-   shaderProgram.vertexAttribPointer(gl, 'aVertexNormal', 3, gl.FLOAT, false, 6 * Float32Array.BYTES_PER_ELEMENT, 3 * Float32Array.BYTES_PER_ELEMENT)
+   // initialize uniform
+   shaderProgram.uniform3fv(gl, 'material.ambient', [0.2, 0.2, 0.2])
+   shaderProgram.uniform3fv(gl, 'material.diffuse', [0.55, 0.55, 0.55])
+
+   // initialize objects
+   const vertexCoordPos = shaderProgram.getAttribLocation(gl, 'aVertexCoord')
+   const vertexNormalPos = shaderProgram.getAttribLocation(gl, 'aVertexNormal')
+
+   cx.mesh.monitor = createVertexBuffer(gl, vertices, {
+      stride: 6,
+      attributes: [
+         { position: vertexCoordPos, size: 3, offset: 0 },
+         { position: vertexNormalPos, size: 3, offset: 3 }
+      ]
+   })
 
    cx.initialized = true
 }
@@ -57,7 +67,5 @@ export const paintGL = gl => {
    mat4.translate(modelView, modelView, [0.0, 0.0, -75.0])
    mat4.rotate(modelView, modelView, cx.rotation * Math.PI / 180, [0, 1, 0])
    cx.shaderProgram.uniformMatrix4fv(gl, 'modelView', false, modelView)
-
-   gl.bindBuffer(gl.ARRAY_BUFFER, cx.vertexBufferObject)
-   gl.drawArrays(gl.TRIANGLES, 0, vertices.length / 6)
+   cx.mesh.monitor.draw(gl, gl.TRIANGLES, vertices.length / 6)
 }

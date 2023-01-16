@@ -1,26 +1,15 @@
-export default String.raw`
-precision mediump float;
-
-attribute vec3 aVertexCoord;
-attribute vec3 aVertexNormal;
-
-uniform mat4 projection;
-uniform mat4 modelView;
-
-varying vec3 fragPos;
-varying vec3 vertexNormal;
-
+export default (String.raw`
 mat3 transpose(mat3 inMatrix) {
     vec3 i0 = inMatrix[0];
     vec3 i1 = inMatrix[1];
     vec3 i2 = inMatrix[2];
-    
+
     mat3 outMatrix = mat3(
         vec3(i0.x, i1.x, i2.x),
         vec3(i0.y, i1.y, i2.y),
         vec3(i0.z, i1.z, i2.z)
     );
-    
+
     return outMatrix;
 }
 
@@ -53,11 +42,4 @@ mat3 inverse(mat3 matrix) {
 
     return (1.0 / dot(row0, minors0)) * adj;
 }
-
-void main() {
-    fragPos = vec3(modelView * vec4(aVertexCoord, 1.0));
-    vertexNormal = transpose(inverse(mat3(modelView))) * aVertexNormal;
-    
-    gl_Position = projection * vec4(fragPos, 1.0);
-}
-`;
+`)

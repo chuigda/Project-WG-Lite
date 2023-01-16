@@ -10,7 +10,7 @@ export const createShaderProgram = (gl, vsSource, fsSource) => {
    gl.shaderSource(fragmentShader, fsSource)
    gl.compileShader(fragmentShader)
    if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
-      throw new Error(`ERROR compiling fragment shader: ${gl.getShaderInfoLog(vertexShader)}`)
+      throw new Error(`ERROR compiling fragment shader: ${gl.getShaderInfoLog(fragmentShader)}`)
    }
 
    const program = gl.createProgram()
@@ -19,7 +19,7 @@ export const createShaderProgram = (gl, vsSource, fsSource) => {
    gl.linkProgram(program)
 
    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-      throw new Error(`ERROR linking shader program: ${gl.getShaderInfoLog(vertexShader)}`)
+      throw new Error(`ERROR linking shader program: ${gl.getShaderInfoLog(program)}`)
    }
 
    gl.deleteShader(vertexShader)
@@ -29,6 +29,7 @@ export const createShaderProgram = (gl, vsSource, fsSource) => {
       program,
       attributeLocations: {},
       uniformLocations: {},
+
       useProgram(gl) {
          gl.useProgram(this.program)
       },
@@ -51,12 +52,21 @@ export const createShaderProgram = (gl, vsSource, fsSource) => {
          gl.vertexAttribPointer(this.getAttribLocation(gl, name), size, type, normalized, stride, offset)
       },
       uniformMatrix4fv(gl, name, transpose, value) {
+         if (value.constructor === Array) {
+            value = new Float32Array(value)
+         }
          gl.uniformMatrix4fv(this.getUniformLocation(gl, name), transpose, value)
       },
       uniform3fv(gl, name, value) {
+         if (value.constructor === Array) {
+            value = new Float32Array(value)
+         }
          gl.uniform3fv(this.getUniformLocation(gl, name), value)
       },
       uniform1f(gl, name, value) {
+         if (value.constructor === Array) {
+            value = new Float32Array(value)
+         }
          gl.uniform1f(this.getUniformLocation(gl, name), value)
       }
    }

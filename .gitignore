@@ -1,2 +1,2 @@
 .idea
-src/model/*
+src/model/*.mjs
