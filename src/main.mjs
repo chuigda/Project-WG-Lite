@@ -16,11 +16,6 @@ const cx = {
 }
 
 export const initializeGL = gl => {
-   console.log(`GL_VENDOR = ${gl.getParameter(gl.VENDOR)}`)
-   console.log(`GL_VERSION = ${gl.getParameter(gl.VERSION)}`)
-   console.log(`GL_RENDERER = ${gl.getParameter(gl.RENDERER)}`)
-   console.log(`GL_EXTENSIONS = ${gl.getSupportedExtensions().join(' ')}`)
-
    // initialize GL constants
    gl.enable(gl.DEPTH_TEST)
 
@@ -46,7 +41,9 @@ export const resizeGL = (gl, w, h) => {
    cx.commonShader.uniformMatrix4fv(gl, 'projection', false, projection)
 }
 
-export const paintGL = (gl, status) => {
+export const paintGL = (gl, statusRef) => {
+   const { status } = statusRef
+
    gl.clearColor(0, 0, 0, 1)
    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
 

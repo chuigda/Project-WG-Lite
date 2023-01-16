@@ -2,4 +2,28 @@ body {
     margin: 0;
     width: 100vw;
     height: 100vh;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+hr {
+    width: calc(100% - 20px);
+}
+
+table {
+    width: 800px;
+}
+
+code {
+    font-size: 10pt;
+    line-height: 1em;
+}
+
+textarea {
+    width: 800px;
+    font-family: monospace;
+    font-size: 10pt;
+    line-height: 1rem;
 }

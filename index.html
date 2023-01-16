@@ -5,6 +5,7 @@
         <title>Project-WG Lite Edition</title>
 
         <link rel="stylesheet" href="index.css">
+        <script src="fake-jquery.js"></script>
         <script src="index.mjs" type="module"></script>
     </head>
     <body>
@@ -18,5 +19,31 @@
                 to view this page.
             </div>
         </canvas>
+        <hr />
+
+        <!--suppress HtmlDeprecatedAttribute -->
+        <table border="1">
+            <tr>
+                <td><code>GL_VENDOR</code></td>
+                <td><code id="gl-vendor"></code></td>
+            </tr>
+            <tr>
+                <td><code>GL_VERSION</code></td>
+                <td><code id="gl-version"></code></td>
+            </tr>
+            <tr>
+                <td><code>GL_RENDERER</code></td>
+                <td><code id="gl-renderer"></code></td>
+            </tr>
+            <tr>
+                <td><code>GL_EXTENSIONS</code></td>
+                <td><code id="gl-extensions"></code></td>
+            </tr>
+        </table>
+        <hr />
+        <textarea id="statusEdit" rows="20"></textarea>
+        <div>
+            <button id="submit">提交</button> <button id="reset">虫豸</button>
+        </div>
     </body>
 </html>
