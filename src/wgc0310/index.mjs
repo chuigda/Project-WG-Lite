@@ -10,4 +10,3 @@ export const initStatus = inputData => ({
       right: initArmStatus(inputData?.armStatus.right)
    }
 })
-

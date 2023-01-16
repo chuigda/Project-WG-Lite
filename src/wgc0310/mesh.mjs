@@ -63,25 +63,10 @@ export const loadOpaqueMesh = (gl, mesh, vertexCoordPos, vertexNormalPos) => {
    mesh.clawCover = createVertexBuffer(gl, clawCoverMesh, opaqueDesc)
 }
 
-export const loadTranslucentMesh = (gl, mesh, vertexCoordPos, vertexNormalPos) => {
-   const translucentDesc = {
-      stride: 6,
-      attributes: [
-         { position: vertexCoordPos, size: 3, offset: 0 },
-         { position: vertexNormalPos, size: 3, offset: 3 }
-      ]
-   }
-
-   mesh.colorTimerShell = createVertexBuffer(gl, colorTimerShellMesh, translucentDesc)
-}
-
-export const loadNonLightenedMesh = (gl, mesh, vertexCoordPos, vertexNormalPos) => {
+export const loadNonLightenedMesh = (gl, mesh, vertexCoordPos) => {
    const nonLightenedDesc = {
       stride: 6,
-      attributes: [
-         { position: vertexCoordPos, size: 3, offset: 0 },
-         { position: vertexNormalPos, size: 3, offset: 3 }
-      ]
+      attributes: [ { position: vertexCoordPos, size: 3, offset: 0 } ]
    }
 
    mesh.colorTimer = createVertexBuffer(gl, colorTimerMesh, nonLightenedDesc)
