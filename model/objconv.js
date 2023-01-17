@@ -5,6 +5,8 @@ const { readFileSync, writeFileSync } = require('fs')
 const fileName = process.argv[2]
 const outputFileName = process.argv[3]
 
+console.log(`converting ${fileName} to ${outputFileName}`)
+
 const objContent = readFileSync(fileName).toString('utf-8')
 const objLines = objContent.split('\n')
 
@@ -45,6 +47,9 @@ if (outputFileName.endsWith('.js') || outputFileName.endsWith('.mjs')) {
    writeFileSync(outputFileName, `export default ${JSON.stringify(output)}`)
 } else if (outputFileName.endsWith('.cjs')) {
    writeFileSync(outputFileName, `module.exports = ${JSON.stringify(output)}`)
+} else if (outputFileName.endsWith('.bin')) {
+   const floatArray = new Float32Array(output)
+   writeFileSync(outputFileName, Buffer.from(floatArray.buffer))
 } else {
    writeFileSync(outputFileName, JSON.stringify(output))
 }

@@ -2,9 +2,34 @@ body {
     margin: 0;
     width: 100vw;
     height: 100vh;
+
     display: flex;
-    justify-content: center;
-    justify-items: center;
     align-items: center;
-    align-content: center;
+    flex-direction: column;
 }
+
+table {
+    width: 800px;
+}
+
+code {
+    font-size: 10pt;
+    line-height: 1em;
+}
+
+textarea {
+    font-family: monospace;
+    font-size: 10pt;
+    line-height: 1rem;
+}
+
+tr.code-edit > td > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+tr.code-edit > td > div > textarea {
+    width: calc(100% - 8px);
+}
+

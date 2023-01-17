@@ -1,2 +1,5 @@
 .idea
-src/model/*
+node_modules
+dist
+model/*.json
+model/*.bin

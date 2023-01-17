@@ -1,0 +1,19 @@
+= Project-WG-Lite
+Author: Chuigda<icey@icey.tech>
+
+link:https://github.com/chuigda/Project-WG[Project-WG] 的轻量版本，使用 WebGL 1.0 实现。
+
+== 与桌面版 Project-WG 的对比
+
+简单来说，这个仓库里面的文件并不是一个完整的应用程序，而更类似于一个 Library 或者 Component，可以方便地嵌入到其他应用网页程序中。
+
+* 不包含二进制文件，可以在任何支持 WebGL 1.0 的浏览器中运行
+* 使用高氏着色器，并且不绘制高光，从而提高在低端设备上的性能
+* 不包含曲面屏幕，面数更少
+* 不包含透明物体
+* 不自带状态控制
+* 不包含标准的屏幕画面
+
+== 使用方法
+
+只要在合适的时机调用 `initializeGL`, `paintGL` 和 `resizeGL` 以及 `setScreenRenderer` 就可以了。具体可以看 `index.mjs` 里的做法

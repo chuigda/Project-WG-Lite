@@ -1,16 +1,64 @@
 <!DOCTYPE html>
+<!--suppress HtmlFormInputWithoutLabel, HtmlDeprecatedAttribute -->
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Project-WG Lite Edition</title>
+        <title>Project-WG Lite Edition Demo</title>
 
         <link rel="stylesheet" href="index.css">
+        <script src="fake-jquery.js"></script>
         <script src="index.mjs" type="module"></script>
     </head>
     <body>
-        <canvas id="mainCanvas">
-            Your browser does not support canvas.
-            Download <a href="https://www.google.com/chrome/">Chrome</a> or <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a> to view this page.
+        <div id="load-indicator">
+            正在加载，请稍等
+        </div>
+
+        <canvas id="main-canvas">
+            <div style="border: 1px solid black">
+                Your browser does not support canvas. Download
+                <ul>
+                    <li><a href="https://www.google.com/chrome/">Chrome</a></li>
+                    <li>or <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a></li>
+                </ul>
+                to view this page.
+            </div>
         </canvas>
+
+        <div id="control-ui" style="display: none">
+            <br />
+            <table border="1">
+                <tr>
+                    <td><code>GL_VENDOR</code></td>
+                    <td><code id="gl-vendor"></code></td>
+                </tr>
+                <tr>
+                    <td><code>GL_VERSION</code></td>
+                    <td><code id="gl-version"></code></td>
+                </tr>
+                <tr>
+                    <td><code>GL_RENDERER</code></td>
+                    <td><code id="gl-renderer"></code></td>
+                </tr>
+                <tr>
+                    <td><code>GL_EXTENSIONS</code></td>
+                    <td><code id="gl-extensions"></code></td>
+                </tr>
+            </table>
+            <br />
+            <table border="1">
+                <tr><td><code>status</code></td></tr>
+                <tr class="code-edit">
+                    <td>
+                        <div>
+                            <textarea id="status-edit" rows="40"></textarea>
+                            <div>
+                                <button id="submit">提交</button> <button id="reset">虫豸</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </body>
 </html>
