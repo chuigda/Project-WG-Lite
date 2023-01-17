@@ -151,12 +151,12 @@ export const paintGL = (gl, statusRef) => {
    drawArm(gl, modelView, status.armStatus.left, -1.0, leftArmMatrix)
 
    mat4.translate(modelView, modelView, [0.0, 12.875, 0.0])
-   mat4.rotateX(modelView, modelView, toRadian(status.headStatus.rotationY / 2.0))
+   mat4.rotateY(modelView, modelView, toRadian(status.headStatus.rotationY / 2.0))
    cx.commonShader.uniformMatrix4fv(gl, 'modelView', false, modelView)
    material.chrome.apply(gl, cx.commonShader)
    cx.mesh.wheel.draw(gl)
 
-   mat4.rotateX(modelView, modelView, toRadian(status.headStatus.rotationY / 2.0))
+   mat4.rotateY(modelView, modelView, toRadian(status.headStatus.rotationY / 2.0))
    mat4.translate(modelView, modelView, [0.0, 0.375, 0.0])
    cx.commonShader.uniformMatrix4fv(gl, 'modelView', false, modelView)
    material.plastic.apply(gl, cx.commonShader)
@@ -229,7 +229,7 @@ const drawArm = (gl, modelView, armStatus, coeff, outputMatrix) => {
    material.plastic.apply(gl, cx.commonShader)
    cx.mesh.smallArmCover.draw(gl)
 
-   mat4.translate(modelView, modelView, [10.0, 0.0, 0.0])
+   mat4.translate(modelView, modelView, [25.0, 0.0, 0.0])
    mat4.rotateZ(modelView, modelView, toRadian(coeff * armStatus.rotation[4]))
    cx.commonShader.uniformMatrix4fv(gl, 'modelView', false, modelView)
 

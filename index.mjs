@@ -9,8 +9,8 @@ const cx = {}
 
 const init = () => {
    const canvas = $('mainCanvas')
-   canvas.width = Math.round(window.innerWidth * 0.5)
-   canvas.height = Math.round(window.innerHeight * 0.5)
+   canvas.width = 1600
+   canvas.height = 1200
    canvas.style.cssText = `width: ${canvas.width / 2}px; height: ${canvas.height / 2}px;`
 
    const gl = canvas.getContext('webgl')
@@ -98,13 +98,3 @@ window.onload = () => {
    init()
    requestAnimationFrame(main)
 }
-
-addEventListener('resize', () => {
-   const canvas = $('mainCanvas')
-   canvas.width = Math.round(window.innerWidth * 0.5)
-   canvas.height = Math.round(window.innerHeight * 0.5)
-   canvas.style.cssText = `width: ${canvas.width / 2}px; height: ${canvas.height / 2}px;`
-
-   const gl = canvas.getContext('webgl')
-   resizeGL(gl, canvas.width, canvas.height)
-})
