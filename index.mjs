@@ -11,9 +11,9 @@ const cx = {}
 
 const init = modelData => {
    const canvas = $('main-canvas')
-   canvas.width = 1600
-   canvas.height = 1200
-   canvas.style.cssText = `width: ${canvas.width / 2}px; height: ${canvas.height / 2}px;`
+   canvas.width = 800
+   canvas.height = 600
+   canvas.style.cssText = `width: 800px; height: 600px`
 
    const gl = canvas.getContext('webgl')
    initializeGL(gl, modelData)
