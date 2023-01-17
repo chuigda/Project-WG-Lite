@@ -1,9 +1,9 @@
 import { glMatrix, mat4 } from './3rd_parties/gl_matrix/index.mjs'
 
 import { createFrameBuffer } from './glx/framebuffer_object.mjs'
-import { createGouraudShader } from './shader/gouraud'
-import { createFlatShader } from './shader/flat'
-import { createTexturedShader } from './shader/textured'
+import { createGouraudShader } from './shader/gouraud/index.mjs'
+import { createFlatShader } from './shader/flat/index.mjs'
+import { createTexturedShader } from './shader/textured/index.mjs'
 import {
    loadOpaqueMesh,
    loadNonLightenedMesh
@@ -24,6 +24,7 @@ export const initializeGL = gl => {
    // initialize GL constants
    gl.enable(gl.DEPTH_TEST)
    gl.enable(gl.BLEND)
+   gl.enable(gl.CULL_FACE)
    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA)
    gl.clearColor(0.0, 0.0, 0.0, 1.0)
 

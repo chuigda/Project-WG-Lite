@@ -1,5 +1,5 @@
 import { initializeGL, paintGL, resizeGL, setScreenRenderer } from './src/main.mjs'
-import { initStatus } from './src/wgc0310'
+import { initStatus } from './src/wgc0310/index.mjs'
 import { createShaderProgram } from './src/glx/shader_program.mjs'
 import { createVertexBuffer } from './src/glx/vertex_buffer.mjs'
 
