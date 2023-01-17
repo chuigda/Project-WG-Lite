@@ -24,7 +24,6 @@ export const initializeGL = (gl, modelData) => {
    gl.enable(gl.BLEND)
    gl.enable(gl.CULL_FACE)
    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA)
-   gl.clearColor(0.0, 0.0, 0.0, 1.0)
 
    // initialize shaders
    cx.commonShader = createGouraudShader(gl)
@@ -96,6 +95,7 @@ export const paintGL = (gl, statusRef) => {
    const { status } = statusRef
 
    cx.screenFrameBuffer.bind(gl)
+   gl.clearColor(0.0, 0.0, 0.0, 1.0)
    gl.clear(gl.COLOR_BUFFER_BIT)
    if (cx.screenRenderer) {
       cx.screenRenderer(gl)
@@ -103,6 +103,7 @@ export const paintGL = (gl, statusRef) => {
    cx.screenFrameBuffer.release(gl)
 
    gl.viewport(0, 0, cx.w, cx.h)
+   gl.clearColor(...status.webgl.clearColor)
    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
 
    if (!cx.initialized) {
