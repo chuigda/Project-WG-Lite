@@ -39,9 +39,9 @@ const fetchBinary = async url => {
 
 export const loadModelAsync = async () => {
    const ret = {}
-   for (const itemIdx in items) {
+   for (let itemIdx = 0; itemIdx < items.length; itemIdx++) {
       const [name, path] = items[itemIdx]
-      updateLoadIndicator(path, itemIdx, items.length)
+      updateLoadIndicator(path, itemIdx + 1, items.length)
       ret[name] = await fetchBinary(/* @vite-ignore */ path)
    }
 
