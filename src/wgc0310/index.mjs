@@ -8,5 +8,9 @@ export const initStatus = inputData => ({
    armStatus: {
       left: initArmStatus(inputData?.armStatus.left),
       right: initArmStatus(inputData?.armStatus.right)
+   },
+   colorTimer: inputData?.colorTimer ?? {
+      status: 'blue',
+      blinkDuration: 500
    }
 })
