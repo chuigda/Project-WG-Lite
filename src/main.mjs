@@ -174,12 +174,12 @@ export const paintGL = (gl, statusRef) => {
    cx.flatShader.useProgram(gl)
    cx.flatShader.uniformMatrix4fv(gl, 'modelView', false, colorTimerMatrix)
    if (status.colorTimer.status === 'blue') {
-      cx.flatShader.uniform3fv(gl, 'color', [0.0, 0.75, 1.0])
+      cx.flatShader.uniform3fv(gl, 'color', [0.25, 1.0, 1.0])
    } else if (status.colorTimer.status === 'blink') {
       const millis = Date.now() - cx.startTime
       const blink = Math.floor(millis / status.colorTimer.blinkDuration) % 2 === 0
       if (blink) {
-         cx.flatShader.uniform3fv(gl, 'color', [1.0, 0.25, 0.0])
+         cx.flatShader.uniform3fv(gl, 'color', [1.0, 0.25, 0.25])
       } else {
          cx.flatShader.uniform3fv(gl, 'color', [0.4, 0.4, 0.4])
       }
