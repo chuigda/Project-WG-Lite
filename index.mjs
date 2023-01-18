@@ -19,9 +19,14 @@ const init = modelData => {
    initializeGL(gl, modelData)
    resizeGL(gl, canvas.width, canvas.height)
 
-   $('gl-vendor').innerText = gl.getParameter(gl.VENDOR)
+   const debugInfo = gl.getExtension('WEBGL_debug_renderer_info')
+   $('gl-vendor').innerText = debugInfo
+      ? `${gl.getParameter(gl.VENDOR)} (${gl.getParameter(debugInfo?.UNMASKED_VENDOR_WEBGL)})`
+      : gl.getParameter(gl.VENDOR)
    $('gl-version').innerText = gl.getParameter(gl.VERSION)
-   $('gl-renderer').innerText = gl.getParameter(gl.RENDERER)
+   $('gl-renderer').innerText = debugInfo
+      ? `${gl.getParameter(gl.RENDERER)} (${gl.getParameter(debugInfo?.UNMASKED_RENDERER_WEBGL)})`
+      : gl.getParameter(gl.RENDERER)
    $('gl-extensions').innerText = gl.getSupportedExtensions().join(' ')
 
    $('status-edit').value = JSON.stringify(statusRef.status, null, 3)
