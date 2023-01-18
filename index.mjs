@@ -15,7 +15,7 @@ const init = modelData => {
    canvas.height = 600
    canvas.style.cssText = `width: 800px; height: 600px`
 
-   const gl = canvas.getContext('webgl')
+   const gl = canvas.getContext('webgl', { antialias: true })
    initializeGL(gl, modelData)
    resizeGL(gl, canvas.width, canvas.height)
 
