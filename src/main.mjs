@@ -1,7 +1,9 @@
-import { mat4 } from './3rd_parties/gl_matrix/index.mjs'
+import { mat4, mat3, vec4, vec3 } from './3rd_parties/gl_matrix/index.mjs'
 import { toRadian } from './3rd_parties/gl_matrix/common.mjs'
 
 import { createFrameBuffer } from './glx/framebuffer_object.mjs'
+import { createVertexBuffer } from './glx/vertex_buffer.mjs'
+import { createShaderProgram } from './glx/shader_program.mjs'
 import { createGouraudShader } from './shader/gouraud/index.mjs'
 import { createFlatShader } from './shader/flat/index.mjs'
 import { createTexturedShader } from './shader/textured/index.mjs'
@@ -10,7 +12,6 @@ import {
    loadNonLightenedMesh
 } from './wgc0310/mesh.mjs'
 import material from './wgc0310/material.mjs'
-import { createVertexBuffer } from './glx/vertex_buffer.mjs'
 
 const cx = {
    initialized: false,
@@ -18,7 +19,7 @@ const cx = {
    screenRenderer: null
 }
 
-export const initializeGL = (gl, modelData) => {
+const initializeGL = (gl, modelData) => {
    // initialize GL constants
    gl.enable(gl.DEPTH_TEST)
    gl.enable(gl.BLEND)
@@ -75,7 +76,7 @@ export const initializeGL = (gl, modelData) => {
    cx.initialized = true
 }
 
-export const resizeGL = (gl, w, h) => {
+const resizeGL = (gl, w, h) => {
    cx.w = w
    cx.h = h
 
@@ -91,7 +92,7 @@ export const resizeGL = (gl, w, h) => {
    cx.texturedShader.uniformMatrix4fv(gl, 'projection', false, projection)
 }
 
-export const paintGL = (gl, statusRef) => {
+const paintGL = (gl, statusRef) => {
    const { status } = statusRef
 
    cx.screenFrameBuffer.bind(gl)
@@ -189,7 +190,7 @@ export const paintGL = (gl, statusRef) => {
    cx.mesh.colorTimer.draw(gl)
 }
 
-export const setScreenRenderer = screenRenderer => {
+const setScreenRenderer = screenRenderer => {
    cx.screenRenderer = screenRenderer
 }
 
@@ -250,4 +251,17 @@ const drawArm = (gl, modelView, armStatus, coeff, outputMatrix) => {
    cx.mesh.claw.draw(gl)
    material.plastic.apply(gl, cx.commonShader)
    cx.mesh.clawCover.draw(gl)
+}
+
+const glm = { mat3, mat4, vec3, vec4, toRadian }
+const glx = { createFrameBuffer, createVertexBuffer, createShaderProgram }
+
+export {
+   initializeGL,
+   resizeGL,
+   paintGL,
+   setScreenRenderer,
+
+   glm,
+   glx
 }
