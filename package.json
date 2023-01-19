@@ -2,9 +2,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && cp -r model dist/model && cp fake-jquery.js dist/fake-jquery.js",
-    "build-lib": "vite build -c vite.config.esm.js"
+    "build-lib": "vite build -c vite.config.esm.js && npx uglify-js dist/project-wg-lite.mjs -o dist/project-wg-lite.min.mjs && node scripts/post-uglify.js dist/project-wg-lite.min.mjs"
   },
   "devDependencies": {
+    "uglify-js": "^3.17.4",
     "vite": "^4.0.4"
   }
 }
