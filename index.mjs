@@ -1,7 +1,6 @@
-import { initializeGL, paintGL, resizeGL, setScreenRenderer } from './src/main.mjs'
-import { initStatus } from './src/wgc0310/index.mjs'
-import { createShaderProgram } from './src/glx/shader_program.mjs'
-import { createVertexBuffer } from './src/glx/vertex_buffer.mjs'
+import { initializeGL, paintGL, resizeGL, initStatus, setScreenRenderer, glx } from './src/main.mjs'
+
+const { createShaderProgram, createVertexBuffer } = glx
 
 import { loadModelAsync } from './load-model.mjs'
 

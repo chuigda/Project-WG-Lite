@@ -7,6 +7,7 @@ import { createShaderProgram } from './glx/shader_program.mjs'
 import { createGouraudShader } from './shader/gouraud/index.mjs'
 import { createFlatShader } from './shader/flat/index.mjs'
 import { createTexturedShader } from './shader/textured/index.mjs'
+import { initStatus } from './wgc0310/index.mjs'
 import {
    loadOpaqueMesh,
    loadNonLightenedMesh
@@ -260,6 +261,8 @@ export {
    initializeGL,
    resizeGL,
    paintGL,
+
+   initStatus,
    setScreenRenderer,
 
    glm,
