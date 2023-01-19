@@ -1,4 +1,3 @@
-export default (String.raw`
 mat3 transpose(mat3 inMatrix) {
     vec3 i0 = inMatrix[0];
     vec3 i1 = inMatrix[1];
@@ -42,4 +41,3 @@ mat3 inverse(mat3 matrix) {
 
     return (1.0 / dot(row0, minors0)) * adj;
 }
-`)

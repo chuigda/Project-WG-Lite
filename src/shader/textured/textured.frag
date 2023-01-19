@@ -1,4 +1,3 @@
-export default (String.raw`
 precision mediump float;
 
 // input
@@ -10,4 +9,3 @@ uniform sampler2D tex;
 void main() {
     gl_FragColor = texture2D(tex, uvCoord);
 }
-`)

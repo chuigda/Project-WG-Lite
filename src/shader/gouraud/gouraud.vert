@@ -1,6 +1,3 @@
-import math from '../include/math.mjs'
-
-export default (math + String.raw`
 precision mediump float;
 
 // input
@@ -33,4 +30,3 @@ void main() {
 
     gl_Position = projection * vec4(fragPos, 1.0);
 }
-`)
